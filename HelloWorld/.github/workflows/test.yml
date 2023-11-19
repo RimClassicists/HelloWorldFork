@@ -1,0 +1,23 @@
+name: Test Actions
+on:
+  workflow_dispatch:
+   inputs:
+      version: 
+        description: '测试'
+        required: false
+jobs:
+  build:
+    name: Build
+    runs-on: windows-2019
+    steps:
+      - name: Set color
+        id: color-selector
+        shell: pwsh
+        run: echo "SELECTED_COLOR=green" >> $env:GITHUB_OUTPUT
+        
+      - name: Get color
+        shell: bash
+        run: |
+          echo ${{ steps.color-selector.outputs.SELECTED_COLOR }}
+
+        
